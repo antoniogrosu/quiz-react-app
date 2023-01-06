@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500&display=swap');
 :root{
-    font-size: 16px;
+    font-size: 24px;
+}
+body{
+    background-color: #4D5B9E;
+}
+body::-webkit-scrollbar{
+    display: none;
 }
 .start-screen{
     padding: 300px 0;
     height: 100vh;
     position: relative;
+    background-color: #F5F7FB;
 }
 .absolute{
     position: absolute;
@@ -25,14 +32,59 @@
     border-radius: 15px;
     padding: 15px 45px;
     font-family: Inter;
-    font-size: 1rem;
+    font-size: 0.75rem;
     transition: all 0.5s ease-in-out;
 }
 .start-button:hover{
     background-color: #293264;
 }
+.test-screen{
+    padding: 120px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.question-div{
+    padding-bottom : 30px;
+    border-bottom: 3px solid #DBDEF0 ;
+    animation: fade-in 1s;
+    margin-bottom: 50px;
+}
+.buttons-div > button{
+    padding: 15px 60px;
+    background-color: transparent;
+    border: 2px solid #4D5B9E;
+    border-radius: 10px;
+    font-family: Inter;
+    font-size: 0.65rem;
+    color: #4D5B9E;
+    transition: all 0.5s ease-in-out;
+    margin-right: 40px;
+}
+.buttons-div > button:hover{
+    background-color: rgba(41, 50, 100, 0.25);
+}
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 @media only screen and  (max-width : 1000px){
     :root{
-        font-size: 13px;
+        font-size: 18px;
+    }
+    .test-screen{
+        padding: 200px 30px;
+    }
+    .buttons-div > button{
+        margin-right: 0;
+        padding: 10px 45px;
+    }
+    .buttons-div{
+        display: flex;
+        justify-content: space-between;
     }
 }
