@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500&display=swap');
+:root{
+    font-size: 16px;
+}
+.start-screen{
+    padding: 300px 0;
+    height: 100vh;
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+.yellow{
+    top: 0;
+    right: 0;
+}
+.blue{
+    bottom: 0;
+    left: 0;
+}
+.start-button{
+    background-color: #4D5B9E;
+    color: #F5F7FB;
+    border: 0;
+    border-radius: 15px;
+    padding: 15px 45px;
+    font-family: Inter;
+    font-size: 1rem;
+    transition: all 0.5s ease-in-out;
+}
+.start-button:hover{
+    background-color: #293264;
+}
+@media only screen and  (max-width : 1000px){
+    :root{
+        font-size: 13px;
+    }
+}
