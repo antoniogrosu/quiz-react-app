@@ -16,18 +16,16 @@ export default function TestScreen(){
     useEffect(()=>{
         fetch("https://opentdb.com/api.php?amount=5&difficulty=medium&type=boolean")
         .then(res => res.json())
-        .then(data => setData(data.results))
+        .then(data => {
+            const arr = data.results;
+            const newArr = arr.map(obj => ({...obj , id : nanoid()}))
+            setData(newArr)
+        })
         .then(json => {
             setLoading(false)
         })
     },[])    
-    
-    //add id to every object
-    function addId(){
-        const arr = questions.map(obj => ({...obj , id : nanoid()}))
-        setData(arr)
-    }
-
+         
     return(
         <>
         <div className="test-screen" style={{backgroundColor : "#F5F7FB" , display: "flex" , flexDirection:"column"}}>
