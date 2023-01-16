@@ -1,4 +1,3 @@
-import Question from "./Question"
 import { useEffect, useState } from "react"
 import { nanoid } from "nanoid"
 import {Sugar} from 'react-preloaders';
@@ -25,22 +24,49 @@ export default function TestScreen(){
         .then(json => {
             setLoading(false)
         })
+        setData(data)
     },[])
 
-    // function toggleAnswer(obj ,id ,event){
-        // const value = event.target.value
-        // const index = data.indexOf(elem => elem.id == id)
-        // const newObj = {...obj , value : value}
-        // setData(data.splice(index , 1 , newObj))
-    // }
-    const obj = data[1]
-    data.splice(1 , 1 , {...obj , value:"true"})
-    console.log(data)
+    //functions to add to the value property
+
+    function toggleTrue(obj , id){
+        const index = data.findIndex(item => item.id === id)
+        const newObj ={...obj , value : "True"}
+        const newArr = data.splice(index , 1 , newObj)
+        data.join()
+        setData(data)
+    }
+
+    function toggleFalse(obj , id){
+        const index = data.findIndex(item => item.id === id)
+        const newObj ={...obj , value : "False"}
+        const newArr = data.splice(index , 1 , newObj)
+        data.join()
+        setData(data)
+    }
+    
+    //mapping through the array to render the questions
+    const questions = data.map(item =>{
+        return(
+            <div className="question-div" style={{width: "100%"}}>
+                <h1 style={{fontFamily : "Montserrat" , color : "#293264" , fontSize : '1.25rem'}}>{item.question}</h1>
+                <div style={{marginTop : "30px"}} className="buttons-div">
+                    <button onClick={ () => toggleTrue( item ,item.id)}>True</button>
+                    <button onClick={ () => toggleFalse( item , item.id)  } >False</button>
+                </div>  
+            </div>
+        )})
+
+    function submitAnswers(obj){
+        setData(data)
+        console.log(data)
+    }    
     return(
         <>
         <div className="test-screen" style={{backgroundColor : "#F5F7FB" , display: "flex" , flexDirection:"column"}}>
             <h1 style={{fontFamily : "Montserrat" , color :"rgba(41, 50 , 100 , 0.35)" , width: "100%" , marginBottom : "75px" , fontSize :'1rem'}}>QUESTIONS</h1>
-            <Question data ={data} />
+            {questions}
+            <button onClick={submitAnswers}>Submit Data</button>
         </div>
         <Sugar customLoading={loading} background="#F5F7FB" color={"#4D5B9E"} />
         </>
