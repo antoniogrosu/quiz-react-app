@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500&display=swap');
 :root{
-    font-size: 24px;
+    font-size: 20px;
     text-size-adjust: none;
 }
 body{
@@ -65,6 +65,19 @@ body::-webkit-scrollbar{
 .buttons-div > button:hover{
     background-color: rgba(41, 50, 100, 0.25);
 }
+.submit-test{
+    padding: 15px 60px;
+    background-color: #4D5B9E;
+    border: 0;
+    border-radius: 10px;
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 0.75rem;
+    color: #F5F7FB;
+    transition: all 0.5s ease-in-out;
+    margin-right: 40px;
+    cursor: pointer;
+}
 @keyframes fade-in{
     0%{
         opacity: 0;
@@ -75,7 +88,7 @@ body::-webkit-scrollbar{
 }
 @media only screen and  (max-width : 1000px){
     :root{
-        font-size: 18px;
+        font-size: 16px;
     }
     .test-screen{
         padding: 200px 30px;
@@ -87,5 +100,8 @@ body::-webkit-scrollbar{
     .buttons-div{
         display: flex;
         justify-content: space-between;
+    }
+    .question-div{
+        margin-bottom: 80px;
     }
 }

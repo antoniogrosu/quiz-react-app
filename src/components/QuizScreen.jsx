@@ -64,9 +64,9 @@ export default function TestScreen(){
     return(
         <>
         <div className="test-screen" style={{backgroundColor : "#F5F7FB" , display: "flex" , flexDirection:"column"}}>
-            <h1 style={{fontFamily : "Montserrat" , color :"rgba(41, 50 , 100 , 0.35)" , width: "100%" , marginBottom : "75px" , fontSize :'1rem'}}>QUESTIONS</h1>
+            <h1 style={{fontFamily : "Inter" , color :"rgba(41, 50 , 100 , 0.35)" , width: "100%" , marginBottom : "40px" , fontSize :'1rem'}}>QUESTIONS</h1>
             {questions}
-            <button onClick={submitAnswers}>Submit Data</button>
+            <button onClick={submitAnswers} className="submit-test">Submit Test</button>
         </div>
         <Sugar customLoading={loading} background="#F5F7FB" color={"#4D5B9E"} />
         </>
