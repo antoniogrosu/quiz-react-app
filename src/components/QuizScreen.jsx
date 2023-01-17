@@ -57,10 +57,17 @@ export default function TestScreen(){
             </div>
         )})
 
+    const [gid , setGid] = useState([])
+    const [bid , setBid] = useState()
+
     function submitAnswers(obj){
         setData(data)
-        console.log(data)
+        const resp = data.filter(obj => obj.corect === obj.value)
+        const bresp = data.filter(obj => obj.corect !== obj.value)
+        setGid(resp.map(obj => obj.id))
+        setBid(bresp.map(obj => obj.id))
     }    
+    console.log(gid , bid)  
     return(
         <>
         <div className="test-screen" style={{backgroundColor : "#F5F7FB" , display: "flex" , flexDirection:"column"}}>
