@@ -44,37 +44,58 @@ export default function TestScreen(){
         data.join()
         setData(data)
     }
-    
+
     //mapping through the array to render the questions
     const questions = data.map(item =>{
         return(
-            <div className="question-div" style={{width: "100%"}}>
+            <div className="question-div">
                 <h1 style={{fontFamily : "Montserrat" , color : "#293264" , fontSize : '1.25rem'}}>{item.question}</h1>
                 <div style={{marginTop : "30px"}} className="buttons-div">
-                    <button onClick={ () => toggleTrue( item ,item.id)}>True</button>
-                    <button onClick={ () => toggleFalse( item , item.id)  } >False</button>
+                    <button onClick={ () => toggleTrue( item ,item.id)} style={{cursor : "pointer"}} className="choice-button">True</button>
+                    <button onClick={ () => toggleFalse( item , item.id)  } style={{cursor : "pointer"}} className="choice-button" >False</button>
                 </div>  
             </div>
         )})
 
     const [gid , setGid] = useState([])
-    const [bid , setBid] = useState()
+    const [bid , setBid] = useState([{question : "" , corect : ""}])
+    const [result , setResult] = useState(0)
 
     function submitAnswers(obj){
         setData(data)
         const resp = data.filter(obj => obj.corect === obj.value)
         const bresp = data.filter(obj => obj.corect !== obj.value)
         setGid(resp.map(obj => obj.id))
-        setBid(bresp.map(obj => obj.id))
+        setBid(bresp.map(obj => ({question : obj.question , corect : obj.corect})))
+        console.log(bid  , gid)
+        setResult(1)
     }    
-    console.log(gid , bid)  
+    const answers = bid.map( obj => (
+        <>
+        <p style={{fontSize : "1rem" , marginBottom : "20px" , fontFamily : "Inter"}}>{obj.question}</p>
+        <p style={{fontSize : "1rem" , marginBottom : "20px" , fontFamily : "Inter" , color : "green"}}>{obj.corect}</p>
+        </>
+        ))
+
+    const [mistakes , setMistakes] = useState(0)
     return(
         <>
-        <div className="test-screen" style={{backgroundColor : "#F5F7FB" , display: "flex" , flexDirection:"column"}}>
+        <div className="test-screen" style={{backgroundColor : "#F5F7FB" , display: result ? "none" : "flex" , flexDirection:"column"}}>
             <h1 style={{fontFamily : "Inter" , color :"rgba(41, 50 , 100 , 0.35)" , width: "100%" , marginBottom : "40px" , fontSize :'1rem'}}>QUESTIONS</h1>
             {questions}
             <button onClick={submitAnswers} className="submit-test">Submit Test</button>
         </div>
+        <div className="test-screen" style={{display : result ? "flex" : "none" , alignItems : "center" , flexDirection : "column"}}>
+            <h1 style={{textAlign : "center" , marginBottom : "25px" , fontFamily : "Montserrat" , fontSize : "2.5rem" , animation : "fade-in 0.75s"}}>Congratulations!</h1>
+            <h2 style={{textAlign : "center" , marginBottom : "35px" , fontFamily : "Montserrat" , fontSize : "1.5rem"}}>You scored {gid.length} / 5</h2>
+            <button onClick={() => setMistakes(mistake => !mistake)} className="submit-test">See mistakes</button>
+    {mistakes && <div style={{animation : "fade-in 1s"}}>
+                <h2 style={{fontFamily : "Montserrat" , fontSize : "1.25rem" , marginBottom : "25px" , marginTop : "45px"}}>YOUR MISTAKES</h2>
+                {answers}
+            </div>
+            }
+        </div>
+
         <Sugar customLoading={loading} background="#F5F7FB" color={"#4D5B9E"} />
         </>
     )

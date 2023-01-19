@@ -43,15 +43,16 @@ body::-webkit-scrollbar{
     padding: 120px 100px;
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;  
 }
 .question-div{
+    width: 100%;
     padding-bottom : 30px;
     border-bottom: 3px solid #DBDEF0 ;
     animation: fade-in 1s;
     margin-bottom: 50px;
 }
-.buttons-div > button{
+.choice-button{
     padding: 15px 60px;
     background-color: transparent;
     border: 3px solid #4D5B9E;
@@ -60,9 +61,8 @@ body::-webkit-scrollbar{
     font-size: 0.65rem;
     color: #4D5B9E;
     transition: all 0.5s ease-in-out;
-    margin-right: 40px;
 }
-.buttons-div > button:hover{
+.choice-button:hover{
     background-color: rgba(41, 50, 100, 0.25);
 }
 .submit-test{
@@ -75,8 +75,11 @@ body::-webkit-scrollbar{
     font-size: 0.75rem;
     color: #F5F7FB;
     transition: all 0.5s ease-in-out;
-    margin-right: 40px;
     cursor: pointer;
+}
+.choice-button:focus{
+    background-color: #4D5B9E ;
+    color : #F5F7FB;
 }
 @keyframes fade-in{
     0%{
@@ -93,7 +96,7 @@ body::-webkit-scrollbar{
     .test-screen{
         padding: 200px 30px;
     }
-    .buttons-div > button{
+    .choice-button{
         margin-right: 0;
         padding: 10px 45px;
     }
