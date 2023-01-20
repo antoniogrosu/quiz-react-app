@@ -59,7 +59,7 @@ export default function TestScreen(){
 
     const [gid , setGid] = useState([])
     const [bid , setBid] = useState([{question : "" , corect : ""}])
-    const [result , setResult] = useState(0)
+    const [result , setResult] = useState(false)
 
     function submitAnswers(obj){
         setData(data)
@@ -68,12 +68,12 @@ export default function TestScreen(){
         setGid(resp.map(obj => obj.id))
         setBid(bresp.map(obj => ({question : obj.question , corect : obj.corect})))
         console.log(bid  , gid)
-        setResult(1)
+        setResult(res => !res)
     }    
     const answers = bid.map( obj => (
         <>
-        <p style={{fontSize : "1rem" , marginBottom : "20px" , fontFamily : "Inter"}}>{obj.question}</p>
-        <p style={{fontSize : "1rem" , marginBottom : "20px" , fontFamily : "Inter" , color : "green"}}>{obj.corect}</p>
+        <p style={{fontSize : "1rem" , marginBottom : "20px" , fontFamily : "Inter" ,  textAlign : 'center'}}>{obj.question}</p>
+        <p style={{fontSize : "1rem" , marginBottom : "60px" , fontFamily : "Inter" , color : "green" ,  textAlign : 'center'}}>Correct Answer : {obj.corect}</p>
         </>
         ))
 
@@ -86,16 +86,13 @@ export default function TestScreen(){
             <button onClick={submitAnswers} className="submit-test">Submit Test</button>
         </div>
         <div className="test-screen" style={{display : result ? "flex" : "none" , alignItems : "center" , flexDirection : "column"}}>
-            <h1 style={{textAlign : "center" , marginBottom : "25px" , fontFamily : "Montserrat" , fontSize : "2.5rem" , animation : "fade-in 0.75s"}}>Congratulations!</h1>
-            <h2 style={{textAlign : "center" , marginBottom : "35px" , fontFamily : "Montserrat" , fontSize : "1.5rem"}}>You scored {gid.length} / 5</h2>
-            <button onClick={() => setMistakes(mistake => !mistake)} className="submit-test">See mistakes</button>
-    {mistakes && <div style={{animation : "fade-in 1s"}}>
-                <h2 style={{fontFamily : "Montserrat" , fontSize : "1.25rem" , marginBottom : "25px" , marginTop : "45px"}}>YOUR MISTAKES</h2>
+            <h1 style={{textAlign : "center" , marginBottom : "25px" , fontFamily : "Montserrat" , fontSize : "2.5rem" , animation : "fade-in 0.75s" ,color : "#293264"}}>Congratulations!</h1>
+            <h2 style={{textAlign : "center" , marginBottom : "35px" , fontFamily : "Montserrat" , fontSize : "1.5rem"  , color : "#293264"}}>You scored {gid.length} / 5</h2>
+        <div style={{animation : "fade-in 1s"}}>
+                <h2 style={{fontFamily : "Montserrat" , fontSize : "1.25rem" , marginBottom : "30px" , marginTop : "60px" , color : "#4D5B9E" , textAlign : 'center'}}>YOUR MISTAKES</h2>
                 {answers}
-            </div>
-            }
+            </div>  
         </div>
-
         <Sugar customLoading={loading} background="#F5F7FB" color={"#4D5B9E"} />
         </>
     )

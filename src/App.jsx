@@ -18,8 +18,6 @@ function App() {
     <div className="App" style={{position : "relative"}}>
       {!quiz && <StartScreen clicked={toggleTest}/>}
       {quiz && <QuizScreen />}
-      <img src={blob1} className="absolute yellow"></img>
-      <img src={blob2} className="absolute blue"></img>
     </div>
   )
 }
